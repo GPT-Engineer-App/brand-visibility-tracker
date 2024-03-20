@@ -3,6 +3,16 @@ import { Box, Heading, Text, Stack, Button, Grid, Progress, Flex, Spacer } from 
 import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
+const getColorScheme = (score) => {
+  if (score >= 80) {
+    return "green";
+  } else if (score >= 50) {
+    return "yellow";
+  } else {
+    return "red";
+  }
+};
+
 const Index = ({ products, onAddProduct }) => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
@@ -42,11 +52,11 @@ const Index = ({ products, onAddProduct }) => {
             </Heading>
             <Text mb={4}>Visibility Scores:</Text>
             <Text>Alza: {product.visibility.alza}%</Text>
-            <Progress value={product.visibility.alza} mb={2} />
+            <Progress value={product.visibility.alza} mb={2} colorScheme={getColorScheme(product.visibility.alza)} />
             <Text>Mall: {product.visibility.mall}%</Text>
-            <Progress value={product.visibility.mall} mb={2} />
+            <Progress value={product.visibility.mall} mb={2} colorScheme={getColorScheme(product.visibility.mall)} />
             <Text>Kosik: {product.visibility.kosik}%</Text>
-            <Progress value={product.visibility.kosik} mb={4} />
+            <Progress value={product.visibility.kosik} mb={4} colorScheme={getColorScheme(product.visibility.kosik)} />
           </Box>
         ))}
       </Grid>
