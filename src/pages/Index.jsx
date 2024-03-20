@@ -1,27 +1,21 @@
 import React, { useState } from "react";
-import { Box, Heading, Text, Image, Stack, Button, Grid, Progress, Flex, Spacer } from "@chakra-ui/react";
+import { Box, Heading, Text, Stack, Button, Grid, Progress, Flex, Spacer } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
 const products = [
-  {
-    name: "Lindt Excellence Dark Chocolate 70%",
-    image: "https://images.unsplash.com/photo-1475070929565-c985b496cb9f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxMaW5kdCUyMEV4Y2VsbGVuY2UlMjBEYXJrJTIwQ2hvY29sYXRlJTIwNzAlMjV8ZW58MHx8fHwxNzEwOTI1Njk3fDA&ixlib=rb-4.0.3&q=80&w=1080",
-    visibility: 85,
-  },
-  {
-    name: "Lindt Lindor Milk Chocolate Truffles",
-    image: "https://images.unsplash.com/photo-1603751915495-a5a3ec39c7f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxMaW5kdCUyMExpbmRvciUyME1pbGslMjBDaG9jb2xhdGUlMjBUcnVmZmxlc3xlbnwwfHx8fDE3MTA5MjU2OTd8MA&ixlib=rb-4.0.3&q=80&w=1080",
-    visibility: 92,
-  },
-  {
-    name: "Lindt Excellence Milk Chocolate",
-    image: "https://images.unsplash.com/photo-1553452118-621e1f860f43?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxMaW5kdCUyMEV4Y2VsbGVuY2UlMjBNaWxrJTIwQ2hvY29sYXRlfGVufDB8fHx8MTcxMDkyNTY5N3ww&ixlib=rb-4.0.3&q=80&w=1080",
-    visibility: 78,
-  },
+  { name: "Lindt Excellence Dark Chocolate 70%", visibility: 85 },
+  { name: "Lindt Lindor Milk Chocolate Truffles", visibility: 92 },
+  { name: "Lindt Excellence Milk Chocolate", visibility: 78 },
 ];
 
 const Index = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
+
+  const handleAddProduct = () => {
+    navigate("/add-product");
+  };
 
   const filteredProducts = products.filter((product) => product.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
@@ -45,7 +39,7 @@ const Index = () => {
           </Flex>
         </Box>
         <Spacer />
-        <Button colorScheme="blue" size="lg">
+        <Button colorScheme="blue" size="lg" onClick={handleAddProduct}>
           Add Product
         </Button>
       </Flex>
@@ -53,7 +47,6 @@ const Index = () => {
       <Grid templateColumns="repeat(3, 1fr)" gap={8}>
         {filteredProducts.map((product, index) => (
           <Box key={index} borderWidth={1} borderRadius="lg" p={4}>
-            <Image src={product.image} alt={product.name} mb={4} />
             <Heading as="h3" size="md" mb={2}>
               {product.name}
             </Heading>
