@@ -3,40 +3,9 @@ import { Box, Heading, Text, Stack, Button, Grid, Progress, Flex, Spacer } from 
 import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
-const products = [
-  {
-    name: "Lindt Excellence Dark Chocolate 70%",
-    visibility: {
-      alza: 85,
-      mall: 90,
-      kosik: 80,
-    },
-  },
-  {
-    name: "Lindt Lindor Milk Chocolate Truffles",
-    visibility: {
-      alza: 92,
-      mall: 88,
-      kosik: 95,
-    },
-  },
-  {
-    name: "Lindt Excellence Milk Chocolate",
-    visibility: {
-      alza: 78,
-      mall: 82,
-      kosik: 75,
-    },
-  },
-];
-
-const Index = () => {
+const Index = ({ products, onAddProduct }) => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
-
-  const handleAddProduct = () => {
-    navigate("/add-product");
-  };
 
   const filteredProducts = products.filter((product) => product.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
@@ -60,7 +29,7 @@ const Index = () => {
           </Flex>
         </Box>
         <Spacer />
-        <Button colorScheme="blue" size="lg" onClick={handleAddProduct}>
+        <Button colorScheme="blue" size="lg" onClick={() => navigate("/add-product")}>
           Add Product
         </Button>
       </Flex>

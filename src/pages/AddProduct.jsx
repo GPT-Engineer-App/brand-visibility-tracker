@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Heading, FormControl, FormLabel, Input, NumberInput, NumberInputField, Button } from "@chakra-ui/react";
 
-const AddProduct = () => {
+const AddProduct = (props) => {
   const navigate = useNavigate();
   const [productName, setProductName] = useState("");
   const [alzaVisibility, setAlzaVisibility] = useState(0);
@@ -12,11 +12,16 @@ const AddProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Product Added:", productName, {
-      alza: alzaVisibility,
-      mall: mallVisibility,
-      kosik: kosikVisibility,
-    });
+    const newProduct = {
+      name: productName,
+      visibility: {
+        alza: alzaVisibility,
+        mall: mallVisibility,
+        kosik: kosikVisibility,
+      },
+    };
+
+    props.onAddProduct(newProduct);
     navigate("/");
   };
 
