@@ -4,9 +4,30 @@ import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
 const products = [
-  { name: "Lindt Excellence Dark Chocolate 70%", visibility: 85 },
-  { name: "Lindt Lindor Milk Chocolate Truffles", visibility: 92 },
-  { name: "Lindt Excellence Milk Chocolate", visibility: 78 },
+  {
+    name: "Lindt Excellence Dark Chocolate 70%",
+    visibility: {
+      alza: 85,
+      mall: 90,
+      kosik: 80,
+    },
+  },
+  {
+    name: "Lindt Lindor Milk Chocolate Truffles",
+    visibility: {
+      alza: 92,
+      mall: 88,
+      kosik: 95,
+    },
+  },
+  {
+    name: "Lindt Excellence Milk Chocolate",
+    visibility: {
+      alza: 78,
+      mall: 82,
+      kosik: 75,
+    },
+  },
 ];
 
 const Index = () => {
@@ -50,9 +71,13 @@ const Index = () => {
             <Heading as="h3" size="md" mb={2}>
               {product.name}
             </Heading>
-            <Text mb={4}>Visibility Score:</Text>
-            <Progress value={product.visibility} mb={4} />
-            <Text fontWeight="bold">{product.visibility}%</Text>
+            <Text mb={4}>Visibility Scores:</Text>
+            <Text>Alza: {product.visibility.alza}%</Text>
+            <Progress value={product.visibility.alza} mb={2} />
+            <Text>Mall: {product.visibility.mall}%</Text>
+            <Progress value={product.visibility.mall} mb={2} />
+            <Text>Kosik: {product.visibility.kosik}%</Text>
+            <Progress value={product.visibility.kosik} mb={4} />
           </Box>
         ))}
       </Grid>

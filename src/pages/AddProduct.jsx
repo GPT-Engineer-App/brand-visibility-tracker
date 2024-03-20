@@ -5,12 +5,18 @@ import { Box, Heading, FormControl, FormLabel, Input, NumberInput, NumberInputFi
 const AddProduct = () => {
   const navigate = useNavigate();
   const [productName, setProductName] = useState("");
-  const [visibility, setVisibility] = useState(0);
+  const [alzaVisibility, setAlzaVisibility] = useState(0);
+  const [mallVisibility, setMallVisibility] = useState(0);
+  const [kosikVisibility, setKosikVisibility] = useState(0);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Product Added:", productName, visibility);
+    console.log("Product Added:", productName, {
+      alza: alzaVisibility,
+      mall: mallVisibility,
+      kosik: kosikVisibility,
+    });
     navigate("/");
   };
 
@@ -24,10 +30,22 @@ const AddProduct = () => {
           <FormLabel>Product Name</FormLabel>
           <Input type="text" value={productName} onChange={(e) => setProductName(e.target.value)} placeholder="Enter product name" />
         </FormControl>
-        <FormControl id="visibility" isRequired mb={6}>
-          <FormLabel>Visibility Score</FormLabel>
+        <FormControl id="alzaVisibility" isRequired mb={4}>
+          <FormLabel>Alza Visibility Score</FormLabel>
           <NumberInput max={100} min={0}>
-            <NumberInputField value={visibility} onChange={(e) => setVisibility(+e.target.value)} />
+            <NumberInputField value={alzaVisibility} onChange={(e) => setAlzaVisibility(+e.target.value)} />
+          </NumberInput>
+        </FormControl>
+        <FormControl id="mallVisibility" isRequired mb={4}>
+          <FormLabel>Mall Visibility Score</FormLabel>
+          <NumberInput max={100} min={0}>
+            <NumberInputField value={mallVisibility} onChange={(e) => setMallVisibility(+e.target.value)} />
+          </NumberInput>
+        </FormControl>
+        <FormControl id="kosikVisibility" isRequired mb={6}>
+          <FormLabel>Kosik Visibility Score</FormLabel>
+          <NumberInput max={100} min={0}>
+            <NumberInputField value={kosikVisibility} onChange={(e) => setKosikVisibility(+e.target.value)} />
           </NumberInput>
         </FormControl>
         <Button type="submit" colorScheme="blue" size="lg">
