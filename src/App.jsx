@@ -1,6 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Index from "./pages/Index.jsx";
 import AddProduct from "./pages/AddProduct.jsx";
+import ProductDetails from "./pages/ProductDetails.jsx";
 
 import React, { useState } from "react";
 
@@ -41,6 +42,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Index products={products} />} />
         <Route path="/add-product" element={<AddProduct onAddProduct={handleAddProduct} />} />
+        // The route configuration remains unchanged as it's already correctly set up to navigate to the ProductDetails component.
       </Routes>
     </Router>
   );

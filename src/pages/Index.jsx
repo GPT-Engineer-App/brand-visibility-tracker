@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Box, Heading, Text, Stack, Button, Grid, Progress, Flex, Spacer } from "@chakra-ui/react";
+import { Box, Heading, Text, Stack, Button, Grid, Progress, Flex, Spacer, Link } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
@@ -46,18 +47,20 @@ const Index = ({ products, onAddProduct }) => {
 
       <Grid templateColumns="repeat(3, 1fr)" gap={8}>
         {filteredProducts.map((product, index) => (
-          <Box key={index} borderWidth={1} borderRadius="lg" p={4}>
-            <Heading as="h3" size="md" mb={2}>
-              {product.name}
-            </Heading>
-            <Text mb={4}>Visibility Scores:</Text>
-            <Text>Alza: {product.visibility.alza}%</Text>
-            <Progress value={product.visibility.alza} mb={2} colorScheme={getColorScheme(product.visibility.alza)} />
-            <Text>Mall: {product.visibility.mall}%</Text>
-            <Progress value={product.visibility.mall} mb={2} colorScheme={getColorScheme(product.visibility.mall)} />
-            <Text>Kosik: {product.visibility.kosik}%</Text>
-            <Progress value={product.visibility.kosik} mb={4} colorScheme={getColorScheme(product.visibility.kosik)} />
-          </Box>
+          <Link as={RouterLink} to={`/product/${encodeURIComponent(product.name)}`} key={index}>
+            <Box borderWidth={1} borderRadius="lg" p={4} _hover={{ bg: "gray.50", cursor: "pointer" }}>
+              <Heading as="h3" size="md" mb={2}>
+                {product.name}
+              </Heading>
+              <Text mb={4}>Visibility Scores:</Text>
+              <Text>Alza: {product.visibility.alza}%</Text>
+              <Progress value={product.visibility.alza} mb={2} colorScheme={getColorScheme(product.visibility.alza)} />
+              <Text>Mall: {product.visibility.mall}%</Text>
+              <Progress value={product.visibility.mall} mb={2} colorScheme={getColorScheme(product.visibility.mall)} />
+              <Text>Kosik: {product.visibility.kosik}%</Text>
+              <Progress value={product.visibility.kosik} mb={4} colorScheme={getColorScheme(product.visibility.kosik)} />
+            </Box>
+          </Link>
         ))}
       </Grid>
     </Box>
